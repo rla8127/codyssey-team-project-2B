@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.env
+# 증빙용으로 outputs는 github에 올려야 할듯.
+# output/data/*.db
+# output/data/raw/*.jsonl
+# output/logs/*.log
+# output/charts/*.png
+# output/exports/*
+# output/reports/*
+!**/.gitkeep
+.venv/
+venv/

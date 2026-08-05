@@ -1,0 +1,30 @@
+{
+  "news_sources": {
+    "api": {
+      "provider": "naver",
+      "base_url": "https://naverapihub.apigw.ntruss.com/search/v1/news"
+    },
+    "rss": {
+      "feeds": []
+    },
+    "crawl": {
+      "base_url": "https://www.etnews.com",
+      "list_path": "/news/section.html?id1=04",
+      "request_interval_sec": 1.0
+    }
+  },
+  "duplicate_policy": "skip",
+  "ai": {
+    "provider": "openai",
+    "model": "gpt-5.6-terra",
+    "timeout_sec": 30
+  },
+  "http": {
+    "timeout_sec": 10,
+    "max_retries": 2
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "logs/app.log"
+  }
+}
