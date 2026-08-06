@@ -88,6 +88,54 @@ python main.py list --category IT --page 1
 python main.py show --id 1
 ```
 
+## 정기 실행 스케줄링
+
+뉴스 수집을 매일 자동으로 돌리려면 OS 스케줄러에 등록한다.
+
+### 핵심 주의사항
+
+스케줄러는 터미널과 **환경이 달라서** 그냥 등록하면 대부분 실패한다. 세 가지를 지켜야 한다.
+
+1. **절대 경로를 쓴다.** cron은 홈 디렉토리에서 실행되므로 `python main.py`는 파일을 못 찾는다.
+2. **가상환경의 python을 직접 지정한다.** `source .venv/bin/activate` 없이 `.venv/bin/python`을 쓰면 된다.
+3. **작업 디렉토리를 옮긴다.** `config.json`과 `.env`를 프로젝트 루트 기준으로 읽기 때문에 `cd`가 필요하다.
+
+### Linux / macOS (cron)
+
+```bash
+crontab -e
+```
+
+아래 내용을 추가한다 (경로 본인에 맞게 변경).
+
+```cron
+# 매일 오전 8시에 뉴스 수집 → 정제 → 요약까지 실행
+0 8 * * * cd /home/ubuntu/codyssey-team-project-2B && .venv/bin/python main.py fetch --source naver --limit 20 >> logs/cron.log 2>&1
+5 8 * * * cd /home/ubuntu/codyssey-team-project-2B && .venv/bin/python main.py clean --all >> logs/cron.log 2>&1
+10 8 * * * cd /home/ubuntu/codyssey-team-project-2B && .venv/bin/python main.py summarize --unsummarized --limit 20 >> logs/cron.log 2>&1
+
+# 매주 월요일 오전 9시에 분석 + 리포트 생성
+0 9 * * 1 cd /home/ubuntu/codyssey-team-project-2B && .venv/bin/python main.py analyze >> logs/cron.log 2>&1
+10 9 * * 1 cd /home/ubuntu/codyssey-team-project-2B && .venv/bin/python main.py report --format md >> logs/cron.log 2>&1
+```
+
+수집과 요약 사이에 5분 간격을 둔 이유는, 앞 단계가 끝나기 전에 다음 단계가 시작되면
+아직 정제되지 않은 데이터를 대상으로 돌게 되기 때문이다. 한 줄로 묶어 순차 실행해도 된다.
+
+```cron
+# && 로 묶으면 앞 명령이 성공했을 때만 다음이 실행된다
+0 8 * * * cd /home/ubuntu/codyssey-team-project-2B && .venv/bin/python main.py fetch --source naver --limit 20 && .venv/bin/python main.py clean --all && .venv/bin/python main.py summarize --unsummarized --limit 20 >> logs/cron.log 2>&1
+```
+
+등록 확인과 삭제:
+
+```bash
+crontab -l          # 등록된 목록 확인
+crontab -r          # 전체 삭제 (주의)
+tail -f logs/cron.log   # 실행 로그 확인
+```
+
+
 ## 현재 상태
 
 `src/common/`(DB, config, logger)만 구현되어 있다. `src/collector/`, `src/ai/`,
