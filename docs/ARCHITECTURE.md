@@ -4,10 +4,10 @@
 
 | 담당 | 역할 | 모듈 | 서브커맨드 |
 |---|---|---|---|
-| A | Collector Engineer | `src/collector/` | `fetch`, `clean` |
-| B | AI Engineer | `src/ai/` | `summarize`, `analyze` |
-| C | Visualization Engineer | `src/report/` | `report`, `export` |
-| D | Data & Compliance Lead | 소스/정책 조사, `config.json` | (보너스 `list`/`show` 겸임) |
+| A | 뉴스 수집·정제 | `src/collector/` | `fetch`, `clean` |
+| B | AI 요약·분석 | `src/ai/` | `summarize`, `analyze` |
+| C | 시각화·리포트 | `src/report/` | `report`, `export` |
+| D | 데이터 정책·문서 | 소스/정책 조사, `config.json` | (보너스 `list`/`show` 겸임) |
 
 A/B/C는 서로의 모듈을 import하지 않는다. 데이터는 오직 `src/common/db.py`를
 통해 SQLite로 주고받는다. raw/clean은 테이블로 분리되어 있다 (`news_raw`: 수집

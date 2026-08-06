@@ -7,10 +7,10 @@
 
 | 담당 | 역할 | 모듈 | 서브커맨드 |
 |---|---|---|---|
-| A | Collector Engineer | `src/collector/` | `fetch`, `clean` |
-| B | AI Engineer | `src/ai/` | `summarize`, `analyze` |
-| C | Visualization Engineer | `src/report/` | `report`, `export` |
-| D | Data & Compliance Lead | `docs/`, `config.json` | (보너스 `list`/`show` 겸임) |
+| A | 뉴스 수집·정제 | `src/collector/` | `fetch`, `clean` |
+| B | AI 요약·분석 | `src/ai/` | `summarize`, `analyze` |
+| C | 시각화·리포트 | `src/report/` | `report`, `export` |
+| D | 데이터 정책·문서 | `docs/`, `config.json` | (보너스 `list`/`show` 겸임) |
 
 역할 분담, 디렉토리 구조, 모듈 간 의존성 규칙은 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) 참고.
 
