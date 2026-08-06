@@ -481,6 +481,84 @@ def fetch_news_for_export(
     return [dict(r) for r in conn.execute(sql, params).fetchall()]
 
 
+# ---------------------------------------------------------------------------
+# query(D, 보너스) 전용 — list / show
+# ---------------------------------------------------------------------------
+
+
+def _news_filter_clause(
+    category: str | None,
+    date_from: str | None,
+    date_to: str | None,
+    keyword: str | None,
+    status: str | None,
+) -> tuple[str, list]:
+    """list/count가 같은 조건을 쓰도록 WHERE 절과 파라미터를 함께 만든다.
+
+    날짜는 발행일 기준이되, 발행일이 없는 기사가 빠지지 않도록 collected_at으로 대체한다.
+    keyword는 제목/본문/요약을 함께 검색한다.
+    """
+    where: list[str] = []
+    params: list = []
+
+    if category:
+        where.append("category = ?")
+        params.append(category)
+    if date_from:
+        where.append("COALESCE(published_at, collected_at) >= ?")
+        params.append(date_from)
+    if date_to:
+        where.append("COALESCE(published_at, collected_at) <= ?")
+        params.append(date_to + "T23:59:59")
+    if keyword:
+        where.append("(title LIKE ? OR content LIKE ? OR summary LIKE ?)")
+        params.extend([f"%{keyword}%"] * 3)
+    if status:
+        where.append("status = ?")
+        params.append(status)
+
+    return (" WHERE " + " AND ".join(where) if where else ""), params
+
+
+def fetch_news_list(
+    conn: sqlite3.Connection,
+    category: str | None = None,
+    date_from: str | None = None,
+    date_to: str | None = None,
+    keyword: str | None = None,
+    status: str | None = None,
+    limit: int = 10,
+    offset: int = 0,
+) -> list[dict]:
+    """뉴스 목록을 조건 필터링 + 페이지네이션으로 조회한다 (list 서브커맨드)."""
+    clause, params = _news_filter_clause(category, date_from, date_to, keyword, status)
+    sql = (
+        "SELECT * FROM news_clean"
+        + clause
+        + " ORDER BY COALESCE(published_at, collected_at) DESC, id DESC LIMIT ? OFFSET ?"
+    )
+    return [dict(r) for r in conn.execute(sql, params + [limit, offset]).fetchall()]
+
+
+def count_news(
+    conn: sqlite3.Connection,
+    category: str | None = None,
+    date_from: str | None = None,
+    date_to: str | None = None,
+    keyword: str | None = None,
+    status: str | None = None,
+) -> int:
+    """fetch_news_list와 같은 조건의 전체 건수 (페이지 수 계산용)."""
+    clause, params = _news_filter_clause(category, date_from, date_to, keyword, status)
+    return conn.execute("SELECT COUNT(*) AS cnt FROM news_clean" + clause, params).fetchone()["cnt"]
+
+
+def fetch_news_detail(conn: sqlite3.Connection, news_id: int) -> dict | None:
+    """뉴스 1건 상세 조회 (show 서브커맨드). 없으면 None."""
+    row = conn.execute("SELECT * FROM news_clean WHERE id = ?", (news_id,)).fetchone()
+    return dict(row) if row else None
+
+
 """
 각자 여기에서 DB 접근 함수를 추가해서 사용하면 됩니다.
 """

@@ -385,3 +385,7 @@ selenium.common.exceptions.NoSuchDriverException: Message: Unable to obtain driv
 [2026-08-06 04:23:41] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/sentiment.png
 [2026-08-06 04:23:41] [INFO] src.report.cli: 차트 3개 생성 완료
 [2026-08-06 04:23:41] [INFO] src.report.summary: 리포트 저장: /home/ubuntu/codyssey-team-project-2B/output/reports/report_20260806_042341.md
+[2026-08-06 04:36:23] [ERROR] src.query.cli: id=999 인 뉴스가 없습니다.
+[2026-08-06 04:36:25] [ERROR] src.query.cli: 뉴스 id가 필요합니다. 예: python main.py show --id 1
+[2026-08-06 04:37:16] [INFO] src.report.cli: 내보내기 대상: 29건 (status=전체, category=전체)
+[2026-08-06 04:37:16] [INFO] src.report.export: 내보내기 완료: /home/ubuntu/codyssey-team-project-2B/output/exports/news_20260806_043716.csv (29건)

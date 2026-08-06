@@ -83,9 +83,14 @@ python main.py export --format csv --status summarized
 python main.py export --format jsonl
 python main.py export --format excel --category IT
 
-# 보너스
-python main.py list --category IT --page 1
-python main.py show --id 1
+# 보너스: 뉴스 목록/상세 조회
+python main.py list                                  # 최신순 10건
+python main.py list --category IT --page 1           # 카테고리 필터
+python main.py list --keyword 반도체                  # 제목/본문/요약 검색
+python main.py list --date-from 2026-08-05 --date-to 2026-08-06
+python main.py list --status summarized --limit 20   # 요약된 뉴스만
+python main.py show --id 1                           # 상세 조회 (show 1 도 가능)
+python main.py show --id 1 --full                    # 본문 전체 출력
 ```
 
 ## 정기 실행 스케줄링
@@ -138,16 +143,15 @@ tail -f logs/cron.log   # 실행 로그 확인
 
 ## 현재 상태
 
-`src/common/`(DB, config, logger)만 구현되어 있다. `src/collector/`, `src/ai/`,
-`src/report/`, `src/query/`는 빈 폴더 상태이며, 각 담당자가 폴더 안에서
-파일명과 내부 구조를 자유롭게 정해 구현한다. 단, `main.py`가 서브커맨드를
-등록할 수 있도록 각 모듈은 `register_subparser(subparsers)` 함수를 노출하는
-진입 파일을 만들고 `main.py`에 import를 추가해야 한다 (자세한 내용은 main.py 상단 주석 참고).
+필수 서브커맨드 6개(`fetch`, `clean`, `summarize`, `analyze`, `report`, `export`)와
+보너스 2개(`list`, `show`)가 모두 동작한다. 각 모듈은 `register_subparser(subparsers)`
+함수를 노출하고 `main.py`가 이를 import해 등록한다.
 
-- [ ] A: `src/collector/` — fetch(API/RSS + 크롤링), clean 구현
+- [x] A: `src/collector/` — fetch(네이버 API + bs4 크롤링), clean 구현
 - [x] B: `src/ai/` — AI API 연동, summarize, analyze(분석 실행 + `--list`/`--show` 조회) 구현
 - [x] C: `src/report/` — matplotlib 시각화, report, export(CSV/JSONL/Excel) 구현
-- [ ] D: 뉴스 소스/크롤링 정책 조사 후 `config.json` TODO 값 채우기, 여유 시 `src/query/`(list/show) 구현
+- [x] D: `src/query/` — 보너스 list/show(필터 + 페이지네이션) 구현
+- [ ] D: 뉴스 소스/크롤링 정책 조사 후 `config.json` TODO 값 확정
 
 ## 요구사항 원문
 
