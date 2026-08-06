@@ -26,9 +26,9 @@ from src.common.logger import get_logger, setup_logging
 
 from src.collector.cli import register_subparser as register_collector  # A: fetch, clean
 from src.ai.cli import register_subparser as register_ai  # B: summarize, analyze
+from src.report.cli import register_subparser as register_report  # C: report, export
 
 # TODO: 각 담당자가 자기 모듈의 register_subparser를 여기 import한다.
-# from src.report.??? import register_subparser as register_report        # C: report, export
 # from src.query.??? import register_subparser as register_query          # D(보너스): list, show
 
 
@@ -40,9 +40,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     register_collector(subparsers)
     register_ai(subparsers)
+    register_report(subparsers)
 
     # TODO: 각 담당자가 자신의 register 함수를 호출한다.
-    # register_report(subparsers)
     # register_query(subparsers)
 
     return parser

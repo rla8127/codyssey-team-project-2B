@@ -270,6 +270,217 @@ def insert_insight(conn: sqlite3.Connection, insight: dict) -> int:
     return cur.lastrowid
 
 
+def fetch_insights(
+    conn: sqlite3.Connection,
+    category: str | None = None,
+    date_from: str | None = None,
+    date_to: str | None = None,
+    keyword: str | None = None,
+    limit: int = 20,
+    offset: int = 0,
+) -> list[dict]:
+    """저장된 인사이트 목록을 최신순으로 조회한다 (analyze --list).
+
+    date_from/date_to는 분석을 실행한 시각(created_at) 기준으로 거른다.
+    keyword는 trends/keywords 본문에 대한 부분 일치 검색이다.
+    """
+    sql = "SELECT * FROM insights"
+    where: list[str] = []
+    params: list = []
+
+    if category:
+        where.append("category = ?")
+        params.append(category)
+    if date_from:
+        where.append("created_at >= ?")
+        params.append(date_from)
+    if date_to:
+        where.append("created_at <= ?")
+        params.append(date_to + "T23:59:59")
+    if keyword:
+        where.append("(trends LIKE ? OR keywords LIKE ?)")
+        params.extend([f"%{keyword}%", f"%{keyword}%"])
+
+    if where:
+        sql += " WHERE " + " AND ".join(where)
+    sql += " ORDER BY id DESC LIMIT ? OFFSET ?"
+    params.extend([limit, offset])
+
+    return [dict(r) for r in conn.execute(sql, params).fetchall()]
+
+
+def count_insights(
+    conn: sqlite3.Connection,
+    category: str | None = None,
+    date_from: str | None = None,
+    date_to: str | None = None,
+    keyword: str | None = None,
+) -> int:
+    """fetch_insights와 같은 조건의 전체 건수 (페이지네이션 표시용)."""
+    sql = "SELECT COUNT(*) AS cnt FROM insights"
+    where: list[str] = []
+    params: list = []
+
+    if category:
+        where.append("category = ?")
+        params.append(category)
+    if date_from:
+        where.append("created_at >= ?")
+        params.append(date_from)
+    if date_to:
+        where.append("created_at <= ?")
+        params.append(date_to + "T23:59:59")
+    if keyword:
+        where.append("(trends LIKE ? OR keywords LIKE ?)")
+        params.extend([f"%{keyword}%", f"%{keyword}%"])
+
+    if where:
+        sql += " WHERE " + " AND ".join(where)
+
+    return conn.execute(sql, params).fetchone()["cnt"]
+
+
+def fetch_insight(conn: sqlite3.Connection, insight_id: int) -> dict | None:
+    """인사이트 1건을 id로 조회한다 (analyze --show ID). 없으면 None."""
+    row = conn.execute("SELECT * FROM insights WHERE id = ?", (insight_id,)).fetchone()
+    return dict(row) if row else None
+
+
+def fetch_latest_insight(
+    conn: sqlite3.Connection, category: str | None = None
+) -> dict | None:
+    """가장 최근 인사이트 1건을 조회한다 (report에서 활용). 없으면 None."""
+    sql = "SELECT * FROM insights"
+    params: list = []
+    if category:
+        sql += " WHERE category = ?"
+        params.append(category)
+    sql += " ORDER BY id DESC LIMIT 1"
+
+    row = conn.execute(sql, params).fetchone()
+    return dict(row) if row else None
+
+
+# ---------------------------------------------------------------------------
+# report(C) 전용 — 집계/시각화/내보내기
+# ---------------------------------------------------------------------------
+
+
+def count_by_category(conn: sqlite3.Connection) -> dict[str, int]:
+    """카테고리별 뉴스 수 (차트 1: 막대그래프용).
+
+    category가 NULL이거나 빈 문자열인 행은 '미분류'로 묶는다.
+    """
+    rows = conn.execute(
+        """SELECT COALESCE(NULLIF(category, ''), '미분류') AS name, COUNT(*) AS cnt
+           FROM news_clean GROUP BY name ORDER BY cnt DESC"""
+    ).fetchall()
+    return {r["name"]: r["cnt"] for r in rows}
+
+
+def count_by_date(conn: sqlite3.Connection) -> dict[str, int]:
+    """일자별 수집 추이 (차트 2: 선그래프용).
+
+    발행일이 없는 기사도 빠지지 않도록 collected_at으로 대체해 앞 10자(YYYY-MM-DD)만 자른다.
+    """
+    rows = conn.execute(
+        """SELECT substr(COALESCE(published_at, collected_at), 1, 10) AS day,
+                  COUNT(*) AS cnt
+           FROM news_clean
+           WHERE COALESCE(published_at, collected_at) IS NOT NULL
+           GROUP BY day ORDER BY day"""
+    ).fetchall()
+    return {r["day"]: r["cnt"] for r in rows}
+
+
+def count_by_sentiment(conn: sqlite3.Connection) -> dict[str, int]:
+    """감성별 뉴스 수 (보너스 차트: 파이그래프용). 아직 요약 전인 행은 제외한다."""
+    rows = conn.execute(
+        """SELECT sentiment AS name, COUNT(*) AS cnt
+           FROM news_clean
+           WHERE sentiment IS NOT NULL AND sentiment != ''
+           GROUP BY name ORDER BY cnt DESC"""
+    ).fetchall()
+    return {r["name"]: r["cnt"] for r in rows}
+
+
+def quality_metrics(conn: sqlite3.Connection) -> dict:
+    """리포트용 품질 지표.
+
+    수집 대비 정제 성공률, 요약 완료율, 필수 필드 결측률을 한 번에 계산한다.
+    """
+    raw_total = conn.execute("SELECT COUNT(*) AS c FROM news_raw").fetchone()["c"]
+    row = conn.execute(
+        """SELECT COUNT(*) AS total,
+                  SUM(CASE WHEN status = 'summarized' THEN 1 ELSE 0 END) AS summarized,
+                  SUM(CASE WHEN content IS NULL OR content = '' THEN 1 ELSE 0 END) AS no_content,
+                  SUM(CASE WHEN category IS NULL OR category = '' THEN 1 ELSE 0 END) AS no_category,
+                  SUM(CASE WHEN published_at IS NULL OR published_at = '' THEN 1 ELSE 0 END) AS no_date
+           FROM news_clean"""
+    ).fetchone()
+
+    clean_total = row["total"] or 0
+    return {
+        "raw_total": raw_total,
+        "clean_total": clean_total,
+        # 0으로 나누는 것을 막기 위해 분모가 0이면 0.0을 쓴다.
+        "clean_rate": round(clean_total / raw_total * 100, 1) if raw_total else 0.0,
+        "summarized_total": row["summarized"] or 0,
+        "summarized_rate": (
+            round((row["summarized"] or 0) / clean_total * 100, 1) if clean_total else 0.0
+        ),
+        "missing_content": row["no_content"] or 0,
+        "missing_category": row["no_category"] or 0,
+        "missing_date": row["no_date"] or 0,
+    }
+
+
+def top_keywords(conn: sqlite3.Connection, limit: int = 10) -> list[tuple[str, int]]:
+    """저장된 인사이트의 keywords를 모두 펼쳐 빈도 TOP N을 만든다.
+
+    keywords는 JSON 문자열이라 파이썬에서 파싱해 센다.
+    """
+    import json as _json
+    from collections import Counter
+
+    counter: Counter = Counter()
+    for row in conn.execute("SELECT keywords FROM insights").fetchall():
+        if not row["keywords"]:
+            continue
+        try:
+            parsed = _json.loads(row["keywords"])
+        except _json.JSONDecodeError:
+            continue
+        if isinstance(parsed, list):
+            counter.update(str(k).strip() for k in parsed if str(k).strip())
+
+    return counter.most_common(limit)
+
+
+def fetch_news_for_export(
+    conn: sqlite3.Connection,
+    status: str | None = None,
+    category: str | None = None,
+) -> list[dict]:
+    """내보내기 대상 조회 (--status summarized 등 필터 지원)."""
+    sql = "SELECT * FROM news_clean"
+    where: list[str] = []
+    params: list = []
+
+    if status:
+        where.append("status = ?")
+        params.append(status)
+    if category:
+        where.append("category = ?")
+        params.append(category)
+
+    if where:
+        sql += " WHERE " + " AND ".join(where)
+    sql += " ORDER BY id"
+
+    return [dict(r) for r in conn.execute(sql, params).fetchall()]
+
+
 """
 각자 여기에서 DB 접근 함수를 추가해서 사용하면 됩니다.
 """

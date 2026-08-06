@@ -273,3 +273,115 @@ selenium.common.exceptions.NoSuchDriverException: Message: Unable to obtain driv
 [2026-08-06 02:10:38] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 [2026-08-06 02:10:40] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 [2026-08-06 02:10:40] [INFO] src.ai.cli: 요약 완료: 14건 성공, 6건 skip, 0건 실패
+[2026-08-06 02:11:54] [INFO] src.ai.cli: 분석 대상: 14건 (기간=2026-08-01~2026-08-06, 카테고리=IT)
+[2026-08-06 02:11:58] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 02:11:58] [INFO] src.ai.cli: 인사이트 저장 완료: id=2
+[2026-08-06 02:11:58] [INFO] src.ai.cli: 주요 트렌드: AI 확산이 데이터센터·메모리·전력망·반도체를 아우르는 대규모 인프라 투자로 이어지고 있으며, 정책금융도 1조원 규모 펀드 조성으로 이를 뒷받침하고 있다. 반도체는 광반도체 연구, 지역 클러스터 추진, AI 데이터센터용 메모리 제품 출시 등 기술개발과 산업 육성이 동시에 진행되는 핵심 분야로 부상했다. 반도체·SSD·컴퓨터 주변기기 수출의 급증은 IT 산업이 경상수지 흑자 확대를 견인하고 있음을 보여준다. 한편 AI 보조공학과 교육기술은 각각 장애인 자립과 학습 동기 향상 등 사회문제 해결형 서비스로 확장되고, IT 기반 범죄 조직의 해외 거점 이동에 대응한 국제 수사 필요성도 커지고 있다.
+[2026-08-06 02:11:58] [INFO] src.ai.cli: 핵심 키워드: AI 인프라, 반도체 클러스터, 데이터센터 메모리, IT 수출 호조, AI 보조공학
+[2026-08-06 02:12:13] [INFO] src.ai.cli: 분석 대상: 14건 (기간=2026-08-05~2026-08-06, 카테고리=IT)
+[2026-08-06 02:12:18] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 02:12:18] [INFO] src.ai.cli: 인사이트 저장 완료: id=3
+[2026-08-06 02:12:18] [INFO] src.ai.cli: 주요 트렌드: AI 확산에 따라 데이터센터·전력망·메모리 등 AI 인프라 투자와 제품 개발이 본격화되고 있으며, 정책금융도 1조원 규모 펀드 조성으로 이를 뒷받침하고 있다. 반도체는 광반도체 연구, 지역 클러스터 추진, 수출 급증을 통해 산업 경쟁력과 국가 경제의 핵심 성장축으로 부각됐다. 특히 반도체·SSD·컴퓨터 주변기기 수출 호조가 경상수지 흑자 확대를 견인하며 IT 제조업 회복세를 보여준다. 한편 스캠 조직의 카자흐스탄 거점 이동은 IT 기반 범죄가 단속 환경에 맞춰 국경을 넘어 빠르게 재편되는 보안 과제를 드러낸다. AI 보조공학과 에듀테크 서비스 사례는 AI의 활용 범위가 산업 인프라를 넘어 포용성과 교육 현장으로 확대되고 있음을 시사한다.
+[2026-08-06 02:12:18] [INFO] src.ai.cli: 핵심 키워드: AI 인프라, 반도체 클러스터, 데이터센터, IT 수출, 스캠 범죄
+[2026-08-06 02:12:22] [INFO] src.ai.cli: 분석 대상: 4건 (기간=2026-08-05~2026-08-06, 카테고리=반도체)
+[2026-08-06 02:12:25] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 02:12:25] [INFO] src.ai.cli: 인사이트 저장 완료: id=4
+[2026-08-06 02:12:25] [INFO] src.ai.cli: 주요 트렌드: 반도체 업황 기대가 삼성전자와 SK하이닉스 주가 급등 및 외국인 대규모 순매수로 이어지며 국내 증시를 견인하고 있다. 양사는 실적·현금흐름 개선 기대를 바탕으로 지속 가능한 주주환원 확대를 예고해 투자 매력도를 높이고 있다. 반면 단일종목 레버리지 ETF를 둘러싸고 투자자 보호와 거래 연속성 간 정책 논쟁이 커지고 있다. 산업 경쟁력 측면에서는 의대에서 반도체로의 진로 전환, 마이스터고 장비 지원 등 고급·현장 기술인재 확보와 보상 강화가 핵심 과제로 부상했다.
+[2026-08-06 02:12:25] [INFO] src.ai.cli: 핵심 키워드: 반도체 주도 증시, 삼성전자, SK하이닉스, 주주환원 확대, 반도체 인재 육성
+[2026-08-06 04:09:11] [ERROR] src.ai.cli: id=999 인 분석 결과가 없습니다.
+[2026-08-06 04:19:28] [INFO] src.report.charts: 한글 폰트 적용: NanumGothic
+[2026-08-06 04:19:28] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/category_counts.png
+[2026-08-06 04:19:28] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:19:28] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:19:28] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:19:28] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:19:28] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:19:28] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:19:28] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:19:28] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:19:28] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:19:28] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:19:28] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:19:28] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:19:28] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:19:28] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:19:28] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:19:28] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:19:28] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/daily_counts.png
+[2026-08-06 04:19:28] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/sentiment.png
+[2026-08-06 04:19:28] [INFO] src.report.cli: 차트 3개 생성 완료
+[2026-08-06 04:19:28] [INFO] src.report.summary: 리포트 저장: /home/ubuntu/codyssey-team-project-2B/output/reports/report_20260806_041928.md
+[2026-08-06 04:19:38] [INFO] src.report.cli: 내보내기 대상: 20건 (status=summarized, category=전체)
+[2026-08-06 04:19:38] [INFO] src.report.export: 내보내기 완료: /home/ubuntu/codyssey-team-project-2B/output/exports/news_20260806_041938.csv (20건)
+[2026-08-06 04:19:40] [INFO] src.report.cli: 내보내기 대상: 29건 (status=전체, category=전체)
+[2026-08-06 04:19:40] [INFO] src.report.export: 내보내기 완료: /home/ubuntu/codyssey-team-project-2B/output/exports/news_20260806_041940.jsonl (29건)
+[2026-08-06 04:19:41] [INFO] src.report.cli: 내보내기 대상: 14건 (status=전체, category=IT)
+[2026-08-06 04:19:42] [INFO] src.report.export: 내보내기 완료: /home/ubuntu/codyssey-team-project-2B/output/exports/news_20260806_041941.xlsx (14건)
+[2026-08-06 04:20:56] [INFO] src.report.charts: 한글 폰트 적용: NanumGothic
+[2026-08-06 04:20:56] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/category_counts.png
+[2026-08-06 04:20:56] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:20:56] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:20:56] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:20:56] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:20:56] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:20:56] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:20:56] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:20:56] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:20:56] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:20:56] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:20:56] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:20:56] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:20:56] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:20:56] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:20:56] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:20:56] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:20:56] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/daily_counts.png
+[2026-08-06 04:20:56] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/sentiment.png
+[2026-08-06 04:20:56] [INFO] src.report.cli: 차트 3개 생성 완료
+[2026-08-06 04:20:56] [INFO] src.report.summary: 리포트 저장: /home/ubuntu/codyssey-team-project-2B/output/reports/report_20260806_042056.md
+[2026-08-06 04:20:58] [INFO] src.report.cli: 내보내기 대상: 29건 (status=전체, category=전체)
+[2026-08-06 04:20:58] [INFO] src.report.export: 내보내기 완료: /home/ubuntu/codyssey-team-project-2B/output/exports/news_20260806_042058.xlsx (29건)
+[2026-08-06 04:22:16] [INFO] src.report.charts: 한글 폰트 적용: NanumGothic
+[2026-08-06 04:22:16] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/category_counts.png
+[2026-08-06 04:22:16] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:22:16] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:22:16] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:22:16] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:22:16] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:22:16] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:22:16] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:22:16] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:22:16] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:22:16] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:22:16] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:22:16] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:22:16] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:22:16] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:22:16] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:22:16] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:22:16] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/daily_counts.png
+[2026-08-06 04:22:16] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/sentiment.png
+[2026-08-06 04:22:16] [INFO] src.report.cli: 차트 3개 생성 완료
+[2026-08-06 04:22:16] [INFO] src.report.summary: 리포트 저장: /home/ubuntu/codyssey-team-project-2B/output/reports/report_20260806_042216.md
+[2026-08-06 04:23:40] [INFO] src.report.charts: 한글 폰트 적용: NanumGothic
+[2026-08-06 04:23:40] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/category_counts.png
+[2026-08-06 04:23:40] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:23:40] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:23:40] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:23:40] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:23:40] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:23:40] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:23:40] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:23:40] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:23:40] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:23:40] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:23:40] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:23:40] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:23:40] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:23:40] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:23:40] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:23:40] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 04:23:41] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/daily_counts.png
+[2026-08-06 04:23:41] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/sentiment.png
+[2026-08-06 04:23:41] [INFO] src.report.cli: 차트 3개 생성 완료
+[2026-08-06 04:23:41] [INFO] src.report.summary: 리포트 저장: /home/ubuntu/codyssey-team-project-2B/output/reports/report_20260806_042341.md
