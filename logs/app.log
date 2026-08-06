@@ -389,3 +389,140 @@ selenium.common.exceptions.NoSuchDriverException: Message: Unable to obtain driv
 [2026-08-06 04:36:25] [ERROR] src.query.cli: 뉴스 id가 필요합니다. 예: python main.py show --id 1
 [2026-08-06 04:37:16] [INFO] src.report.cli: 내보내기 대상: 29건 (status=전체, category=전체)
 [2026-08-06 04:37:16] [INFO] src.report.export: 내보내기 완료: /home/ubuntu/codyssey-team-project-2B/output/exports/news_20260806_043716.csv (29건)
+[2026-08-06 05:19:39] [INFO] src.collector.cli: 뉴스 수집 시작: source=naver, limit=20
+[2026-08-06 05:19:39] [INFO] src.collector.cli: 수집 완료: 20건 성공, 0건 skip, 0건 실패
+[2026-08-06 05:19:39] [INFO] src.collector.cli: raw 저장소에 저장 완료
+[2026-08-06 05:19:41] [INFO] src.collector.cli: 뉴스 수집 시작: source=naver, limit=3
+[2026-08-06 05:19:41] [INFO] src.collector.cli: 중복 뉴스 skip: https://www.thebell.co.kr/free/content/ArticleView.asp?key=202608061403420240106539
+[2026-08-06 05:19:41] [INFO] src.collector.cli: 중복 뉴스 skip: https://www.koreaherald.com/article/10833057?ref=naver
+[2026-08-06 05:19:41] [INFO] src.collector.cli: 수집 완료: 1건 성공, 2건 skip, 0건 실패
+[2026-08-06 05:19:41] [INFO] src.collector.cli: raw 저장소에 저장 완료
+[2026-08-06 05:19:43] [INFO] src.collector.cli: 뉴스 수집 시작: source=naver, limit=3
+[2026-08-06 05:19:43] [INFO] src.collector.cli: 수집 완료: 3건 성공, 0건 skip, 0건 실패
+[2026-08-06 05:19:43] [INFO] src.collector.cli: raw 저장소에 저장 완료
+[2026-08-06 05:19:45] [INFO] src.collector.cli: 뉴스 수집 시작: source=crawl, limit=5
+[2026-08-06 05:19:52] [INFO] src.collector.cli: 수집 완료: 5건 성공, 0건 skip, 0건 실패
+[2026-08-06 05:19:52] [INFO] src.collector.cli: raw 저장소에 저장 완료
+[2026-08-06 05:19:54] [INFO] src.collector.cli: 뉴스 수집 시작: source=crawl, limit=5
+[2026-08-06 05:20:00] [INFO] src.collector.cli: 중복 뉴스 skip: https://www.etnews.com/20260806000213
+[2026-08-06 05:20:00] [INFO] src.collector.cli: 중복 뉴스 skip: https://www.etnews.com/20260806000192
+[2026-08-06 05:20:00] [INFO] src.collector.cli: 중복 뉴스 skip: https://www.etnews.com/20260806000173
+[2026-08-06 05:20:00] [INFO] src.collector.cli: 중복 뉴스 skip: https://www.etnews.com/20260806000168
+[2026-08-06 05:20:00] [INFO] src.collector.cli: 중복 뉴스 skip: https://www.etnews.com/20260806000161
+[2026-08-06 05:20:00] [INFO] src.collector.cli: 수집 완료: 0건 성공, 5건 skip, 0건 실패
+[2026-08-06 05:20:00] [INFO] src.collector.cli: raw 저장소에 저장 완료
+[2026-08-06 05:20:04] [INFO] src.collector.cli: 정제 대상: 29건
+[2026-08-06 05:20:04] [INFO] src.collector.cli: 정제 완료: 29건 성공, 0건 스킵
+[2026-08-06 05:20:06] [INFO] src.ai.cli: 요약 대상: 10건
+[2026-08-06 05:20:09] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:11] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:15] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:17] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:18] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:20] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:22] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:24] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:28] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:32] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:32] [INFO] src.ai.cli: 요약 완료: 10건 성공, 0건 skip, 0건 실패
+[2026-08-06 05:20:34] [INFO] src.ai.cli: 요약 대상: 1건
+[2026-08-06 05:20:34] [INFO] src.ai.cli: 이미 요약됨, 스킵: id=3
+[2026-08-06 05:20:34] [INFO] src.ai.cli: 요약 완료: 0건 성공, 1건 skip, 0건 실패
+[2026-08-06 05:20:36] [INFO] src.ai.cli: 요약 대상: 20건
+[2026-08-06 05:20:39] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:41] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:42] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:44] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:46] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:48] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:49] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:51] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:53] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:55] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:56] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:57] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:20:59] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:21:01] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:21:07] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:21:08] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:21:11] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:21:13] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:21:14] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:21:15] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:21:15] [INFO] src.ai.cli: 요약 완료: 20건 성공, 0건 skip, 0건 실패
+[2026-08-06 05:21:18] [INFO] src.ai.cli: 분석 대상: 15건 (기간=2026-08-01~2026-08-06, 카테고리=IT)
+[2026-08-06 05:21:22] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 05:21:22] [INFO] src.ai.cli: 인사이트 저장 완료: id=5
+[2026-08-06 05:21:34] [INFO] src.report.charts: 한글 폰트 적용: NanumGothic
+[2026-08-06 05:21:35] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/category_counts.png
+[2026-08-06 05:21:35] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:35] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:35] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:35] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:35] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:35] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:35] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:35] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:35] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:35] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:35] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:35] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:35] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:35] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:35] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:35] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:35] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/daily_counts.png
+[2026-08-06 05:21:35] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/sentiment.png
+[2026-08-06 05:21:35] [INFO] src.report.cli: 차트 3개 생성 완료
+[2026-08-06 05:21:35] [INFO] src.report.summary: 리포트 저장: /home/ubuntu/codyssey-team-project-2B/output/reports/report_20260806_052135.md
+[2026-08-06 05:21:37] [INFO] src.report.charts: 한글 폰트 적용: NanumGothic
+[2026-08-06 05:21:46] [INFO] src.report.charts: 한글 폰트 적용: NanumGothic
+[2026-08-06 05:21:46] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/category_counts.png
+[2026-08-06 05:21:46] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:46] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:46] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:46] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:46] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:46] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:46] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:46] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:46] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:46] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:46] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:46] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:46] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:46] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:46] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:46] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:46] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/daily_counts.png
+[2026-08-06 05:21:46] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/sentiment.png
+[2026-08-06 05:21:46] [INFO] src.report.cli: 차트 3개 생성 완료
+[2026-08-06 05:21:46] [INFO] src.report.summary: 리포트 저장: /home/ubuntu/codyssey-team-project-2B/output/reports/report_20260806_052146.txt
+[2026-08-06 05:21:48] [INFO] src.report.summary: 리포트 저장: /home/ubuntu/codyssey-team-project-2B/output/reports/report_20260806_052148.md
+[2026-08-06 05:21:50] [INFO] src.report.charts: 한글 폰트 적용: NanumGothic
+[2026-08-06 05:21:50] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/category_counts.png
+[2026-08-06 05:21:50] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:50] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:50] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:50] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:50] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:50] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:50] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:50] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:50] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:50] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:50] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:50] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:50] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:50] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:51] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:51] [INFO] matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2026-08-06 05:21:51] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/daily_counts.png
+[2026-08-06 05:21:51] [INFO] src.report.charts: 차트 저장: /home/ubuntu/codyssey-team-project-2B/output/charts/sentiment.png
+[2026-08-06 05:21:51] [INFO] src.report.cli: 차트 3개 생성 완료
+[2026-08-06 05:21:53] [INFO] src.report.cli: 내보내기 대상: 30건 (status=summarized, category=전체)
+[2026-08-06 05:21:53] [INFO] src.report.export: 내보내기 완료: /home/ubuntu/codyssey-team-project-2B/output/exports/news_20260806_052153.csv (30건)
+[2026-08-06 05:21:55] [INFO] src.report.cli: 내보내기 대상: 58건 (status=전체, category=전체)
+[2026-08-06 05:21:55] [INFO] src.report.export: 내보내기 완료: /home/ubuntu/codyssey-team-project-2B/output/exports/news_20260806_052155.jsonl (58건)
+[2026-08-06 05:21:56] [INFO] src.report.cli: 내보내기 대상: 15건 (status=전체, category=IT)
+[2026-08-06 05:21:57] [INFO] src.report.export: 내보내기 완료: /home/ubuntu/codyssey-team-project-2B/output/exports/news_20260806_052156.xlsx (15건)

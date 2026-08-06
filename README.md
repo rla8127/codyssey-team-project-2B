@@ -10,9 +10,11 @@
 | A | 뉴스 수집·정제 | `src/collector/` | `fetch`, `clean` |
 | B | AI 요약·분석 | `src/ai/` | `summarize`, `analyze` |
 | C | 시각화·리포트 | `src/report/` | `report`, `export` |
-| D | 데이터 정책·문서 | `docs/`, `config.json` | (보너스 `list`/`show` 겸임) |
+| D | 데이터 정책·문서 | `docs/`, `config.json` | 보너스 `list`, `show` |
 
-역할 분담, 디렉토리 구조, 모듈 간 의존성 규칙은 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) 참고.
+각 모듈은 서로를 import하지 않고 `src/common/db.py`(SQLite)를 통해서만 데이터를 주고받는다.
+raw/clean은 `news_raw`(수집 원본, 불변) / `news_clean`(정제 결과, `raw_id`로 원본 추적)
+테이블로 분리되어 있고, 파이프라인 단계는 `news_clean.status`(`clean` → `summarized`)로 판별한다.
 
 ## 시작하기
 
@@ -22,7 +24,6 @@ source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 
 cp .env.example .env         # AI_API_KEY 채우기
-# config.json은 이미 있음 — 소스 조사 후 TODO 항목 채우기
 ```
 
 ### 한글 폰트 (차트용)
@@ -95,50 +96,28 @@ python main.py show --id 1 --full                    # 본문 전체 출력
 
 ## 정기 실행 스케줄링
 
-뉴스 수집을 매일 자동으로 돌리려면 OS 스케줄러에 등록한다.
+cron은 터미널과 환경이 달라서, 다음 세 가지를 지키지 않으면 실패한다.
 
-### 핵심 주의사항
+1. `cd`로 프로젝트 루트 이동 — `config.json`/`.env`를 루트 기준으로 읽는다.
+2. `.venv/bin/python`을 직접 지정 — cron의 PATH에는 가상환경이 없다 (`activate` 불필요).
+3. 경로는 절대 경로로 — cron은 홈 디렉토리에서 실행된다.
 
-스케줄러는 터미널과 **환경이 달라서** 그냥 등록하면 대부분 실패한다. 세 가지를 지켜야 한다.
-
-1. **절대 경로를 쓴다.** cron은 홈 디렉토리에서 실행되므로 `python main.py`는 파일을 못 찾는다.
-2. **가상환경의 python을 직접 지정한다.** `source .venv/bin/activate` 없이 `.venv/bin/python`을 쓰면 된다.
-3. **작업 디렉토리를 옮긴다.** `config.json`과 `.env`를 프로젝트 루트 기준으로 읽기 때문에 `cd`가 필요하다.
-
-### Linux / macOS (cron)
-
-```bash
-crontab -e
-```
-
-아래 내용을 추가한다 (경로 본인에 맞게 변경).
+`crontab -e`로 아래를 추가한다 (경로는 본인에 맞게 변경).
 
 ```cron
-# 매일 오전 8시에 뉴스 수집 → 정제 → 요약까지 실행
-0 8 * * * cd /home/ubuntu/codyssey-team-project-2B && .venv/bin/python main.py fetch --source naver --limit 20 >> logs/cron.log 2>&1
-5 8 * * * cd /home/ubuntu/codyssey-team-project-2B && .venv/bin/python main.py clean --all >> logs/cron.log 2>&1
-10 8 * * * cd /home/ubuntu/codyssey-team-project-2B && .venv/bin/python main.py summarize --unsummarized --limit 20 >> logs/cron.log 2>&1
-
-# 매주 월요일 오전 9시에 분석 + 리포트 생성
-0 9 * * 1 cd /home/ubuntu/codyssey-team-project-2B && .venv/bin/python main.py analyze >> logs/cron.log 2>&1
-10 9 * * 1 cd /home/ubuntu/codyssey-team-project-2B && .venv/bin/python main.py report --format md >> logs/cron.log 2>&1
-```
-
-수집과 요약 사이에 5분 간격을 둔 이유는, 앞 단계가 끝나기 전에 다음 단계가 시작되면
-아직 정제되지 않은 데이터를 대상으로 돌게 되기 때문이다. 한 줄로 묶어 순차 실행해도 된다.
-
-```cron
-# && 로 묶으면 앞 명령이 성공했을 때만 다음이 실행된다
+# 매일 08:00 수집 → 정제 → 요약 (&&로 묶어 앞 단계 성공 시에만 다음 실행)
 0 8 * * * cd /home/ubuntu/codyssey-team-project-2B && .venv/bin/python main.py fetch --source naver --limit 20 && .venv/bin/python main.py clean --all && .venv/bin/python main.py summarize --unsummarized --limit 20 >> logs/cron.log 2>&1
+
+# 매주 월요일 09:00 분석 → 리포트
+0 9 * * 1 cd /home/ubuntu/codyssey-team-project-2B && .venv/bin/python main.py analyze && .venv/bin/python main.py report --format md >> logs/cron.log 2>&1
 ```
 
-등록 확인과 삭제:
+시간 형식은 `분 시 일 월 요일`. 확인은 `crontab -l`, 로그는 `tail -f logs/cron.log`.
 
-```bash
-crontab -l          # 등록된 목록 확인
-crontab -r          # 전체 삭제 (주의)
-tail -f logs/cron.log   # 실행 로그 확인
-```
+Windows는 작업 스케줄러에서 프로그램에 `.venv\Scripts\python.exe`, 인수에 `main.py fetch ...`,
+**시작 위치에 프로젝트 폴더 경로**를 넣는다 (시작 위치를 비우면 config.json을 못 찾는다).
+
+크롤링 대상 사이트에 부담을 주지 않도록 수집은 하루 1~2회로 제한한다.
 
 
 ## 현재 상태
@@ -147,12 +126,11 @@ tail -f logs/cron.log   # 실행 로그 확인
 보너스 2개(`list`, `show`)가 모두 동작한다. 각 모듈은 `register_subparser(subparsers)`
 함수를 노출하고 `main.py`가 이를 import해 등록한다.
 
-- [x] A: `src/collector/` — fetch(네이버 API + bs4 크롤링), clean 구현
-- [x] B: `src/ai/` — AI API 연동, summarize, analyze(분석 실행 + `--list`/`--show` 조회) 구현
-- [x] C: `src/report/` — matplotlib 시각화, report, export(CSV/JSONL/Excel) 구현
-- [x] D: `src/query/` — 보너스 list/show(필터 + 페이지네이션) 구현
-- [ ] D: 뉴스 소스/크롤링 정책 조사 후 `config.json` TODO 값 확정
+- [x] A: `src/collector/` — fetch(네이버 API + bs4 크롤링), clean
+- [x] B: `src/ai/` — AI API 연동, summarize, analyze(분석 실행 + `--list`/`--show` 조회)
+- [x] C: `src/report/` — matplotlib 시각화, report, export(CSV/JSONL/Excel)
+- [x] D: `src/query/` — 보너스 list/show(필터 + 페이지네이션)
 
 ## 요구사항 원문
 
-[docs/REQUIREMENTS.md](docs/REQUIREMENTS.md)
+[docs/요구사항.md](docs/요구사항.md)
