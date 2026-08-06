@@ -39,9 +39,16 @@ python main.py fetch --source crawl --limit 5
 python main.py fetch --source crawl --category AI --limit 5
 
 python main.py clean --all
+
+# AI 요약 (--all / --id / --unsummarized 중 하나 필수)
+python main.py summarize --unsummarized --limit 10
+python main.py summarize --id 3
+python main.py summarize --all --limit 20 --force   # 이미 요약된 것도 다시 요약
+
+# AI 인사이트 분석 (옵션 생략 시 전체 대상)
+python main.py analyze --date-from 2026-08-01 --date-to 2026-08-06 --category IT
+
 # 아직 미 개발
-# python main.py summarize --unsummarized --limit 10
-# python main.py analyze --date-from 2026-01-01 --date-to 2026-01-10 --category IT
 # python main.py report --format md
 # python main.py export --format csv --status summarized
 

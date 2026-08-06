@@ -6,3 +6,4 @@ openpyxl
 anthropic
 python-dotenv
 selenium
+openai

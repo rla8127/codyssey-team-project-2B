@@ -228,3 +228,48 @@ selenium.common.exceptions.NoSuchDriverException: Message: Unable to obtain driv
 [2026-08-06 01:37:46] [INFO] src.collector.cli: raw 저장소에 저장 완료
 [2026-08-06 01:37:57] [INFO] src.collector.cli: 정제 대상: 11건
 [2026-08-06 01:37:57] [INFO] src.collector.cli: 정제 완료: 11건 성공, 0건 스킵
+[2026-08-06 01:52:44] [INFO] src.ai.cli: 요약 대상: 2건
+[2026-08-06 01:52:49] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 01:52:50] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 01:52:50] [INFO] src.ai.cli: 요약 완료: 2건 성공, 0건 skip, 0건 실패
+[2026-08-06 01:53:04] [INFO] src.ai.cli: 요약 대상: 1건
+[2026-08-06 01:53:04] [INFO] src.ai.cli: 이미 요약됨, 스킵: id=1
+[2026-08-06 01:53:04] [INFO] src.ai.cli: 요약 완료: 0건 성공, 1건 skip, 0건 실패
+[2026-08-06 01:53:11] [INFO] src.ai.cli: 분석 대상: 14건 (기간=2026-08-01~2026-08-06, 카테고리=IT)
+[2026-08-06 01:53:15] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 01:53:15] [INFO] src.ai.cli: 인사이트 저장 완료: id=1
+[2026-08-06 01:53:15] [INFO] src.ai.cli: 주요 트렌드: AI 확산에 따라 데이터센터용 메모리, AI 인프라 펀드, 전력망·데이터센터 투자 등 컴퓨팅 기반시설 경쟁이 본격화되고 있다. 반도체는 광반도체 원천기술, 지역 반도체 클러스터, 수출 급증을 통해 국가 성장과 지역 산업정책의 핵심 축으로 부상했다. IT 수출은 반도체·SSD·컴퓨터 주변기기 중심의 강한 회복세로 경상수지 흑자 확대를 견인하고 있다. 한편 범죄 조직은 IT 인프라와 이동 여건을 활용해 거점을 옮기고 있어 국제 공조 기반의 사이버·스캠 대응 필요성도 커지고 있다. 소비자 영역에서는 삼성의 One UI 베타 확대와 교육 현장 문제를 해결하는 에듀테크 서비스가 주목받는다.
+[2026-08-06 01:53:15] [INFO] src.ai.cli: 핵심 키워드: AI 인프라, 반도체 클러스터, 데이터센터 메모리, IT 수출, 국제 스캠 대응
+[2026-08-06 01:53:27] [INFO] src.ai.cli: 분석 대상: 0건 (기간=전체~전체, 카테고리=존재하지않음)
+[2026-08-06 01:53:27] [WARNING] src.ai.analyze: 분석 대상 뉴스가 없습니다.
+[2026-08-06 01:53:27] [ERROR] src.ai.cli: 인사이트 분석 실패
+[2026-08-06 01:59:28] [INFO] src.ai.cli: 요약 대상: 3건
+[2026-08-06 01:59:31] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 01:59:33] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 01:59:35] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 01:59:35] [INFO] src.ai.cli: 요약 완료: 3건 성공, 0건 skip, 0건 실패
+[2026-08-06 02:09:45] [INFO] src.ai.cli: 요약 대상: 1건
+[2026-08-06 02:09:48] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 02:09:48] [INFO] src.ai.cli: 요약 완료: 1건 성공, 0건 skip, 0건 실패
+[2026-08-06 02:10:16] [INFO] src.ai.cli: 요약 대상: 20건
+[2026-08-06 02:10:16] [INFO] src.ai.cli: 이미 요약됨, 스킵: id=1
+[2026-08-06 02:10:16] [INFO] src.ai.cli: 이미 요약됨, 스킵: id=2
+[2026-08-06 02:10:16] [INFO] src.ai.cli: 이미 요약됨, 스킵: id=3
+[2026-08-06 02:10:16] [INFO] src.ai.cli: 이미 요약됨, 스킵: id=4
+[2026-08-06 02:10:16] [INFO] src.ai.cli: 이미 요약됨, 스킵: id=5
+[2026-08-06 02:10:18] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 02:10:20] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 02:10:21] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 02:10:24] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 02:10:24] [INFO] src.ai.cli: 이미 요약됨, 스킵: id=10
+[2026-08-06 02:10:25] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 02:10:27] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 02:10:28] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 02:10:30] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 02:10:31] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 02:10:33] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 02:10:35] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 02:10:36] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 02:10:38] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 02:10:40] [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-08-06 02:10:40] [INFO] src.ai.cli: 요약 완료: 14건 성공, 6건 skip, 0건 실패

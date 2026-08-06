@@ -170,6 +170,106 @@ def update_news_clean(conn: sqlite3.Connection, raw_id: int, cleaned_fields: dic
     )
     conn.commit()
 
+
+# --- 담당 B (AI): summarize / analyze 용 ---
+
+
+def fetch_clean_news(
+    conn: sqlite3.Connection,
+    only_unsummarized: bool = False,
+    news_id: int | None = None,
+    limit: int | None = None,
+) -> list[dict]:
+    """요약 대상 news_clean 행을 조회한다.
+
+    only_unsummarized=True면 summary가 아직 없는 행만 반환한다 (--unsummarized).
+    news_id를 주면 해당 id 1건만 반환한다 (--id).
+    """
+    sql = "SELECT * FROM news_clean"
+    params: list = []
+    where: list[str] = []
+
+    if news_id is not None:
+        where.append("id = ?")
+        params.append(news_id)
+    if only_unsummarized:
+        where.append("(summary IS NULL OR summary = '')")
+
+    if where:
+        sql += " WHERE " + " AND ".join(where)
+    sql += " ORDER BY id"
+    if limit is not None:
+        sql += " LIMIT ?"
+        params.append(limit)
+
+    return [dict(r) for r in conn.execute(sql, params).fetchall()]
+
+
+def update_news_summary(
+    conn: sqlite3.Connection, news_id: int, summary: str, sentiment: str | None = None
+) -> None:
+    """요약 결과를 news_clean에 반영하고 status를 'summarized'로 올린다."""
+    conn.execute(
+        """UPDATE news_clean
+           SET summary = ?, sentiment = ?, status = 'summarized', updated_at = ?
+           WHERE id = ?""",
+        (summary, sentiment, _now(), news_id),
+    )
+    conn.commit()
+
+
+def fetch_news_for_analysis(
+    conn: sqlite3.Connection,
+    date_from: str | None = None,
+    date_to: str | None = None,
+    category: str | None = None,
+) -> list[dict]:
+    """인사이트 분석 대상을 기간/카테고리로 필터링해 조회한다.
+
+    published_at이 없는 기사를 버리지 않도록 collected_at으로 대체 비교한다.
+    """
+    sql = "SELECT * FROM news_clean"
+    where: list[str] = []
+    params: list = []
+
+    if date_from:
+        where.append("COALESCE(published_at, collected_at) >= ?")
+        params.append(date_from)
+    if date_to:
+        # date_to를 포함하도록 날짜 끝까지 비교한다 (YYYY-MM-DD -> 그날 23:59:59).
+        where.append("COALESCE(published_at, collected_at) <= ?")
+        params.append(date_to + "T23:59:59")
+    if category:
+        where.append("category = ?")
+        params.append(category)
+
+    if where:
+        sql += " WHERE " + " AND ".join(where)
+    sql += " ORDER BY COALESCE(published_at, collected_at)"
+
+    return [dict(r) for r in conn.execute(sql, params).fetchall()]
+
+
+def insert_insight(conn: sqlite3.Connection, insight: dict) -> int:
+    """AI 인사이트 분석 결과를 insights 테이블에 저장하고 id를 반환한다."""
+    cur = conn.execute(
+        """INSERT INTO insights
+           (date_from, date_to, category, news_count, trends, keywords, created_at)
+           VALUES (?, ?, ?, ?, ?, ?, ?)""",
+        (
+            insight.get("date_from"),
+            insight.get("date_to"),
+            insight.get("category"),
+            insight.get("news_count"),
+            insight.get("trends"),
+            insight.get("keywords"),
+            _now(),
+        ),
+    )
+    conn.commit()
+    return cur.lastrowid
+
+
 """
 각자 여기에서 DB 접근 함수를 추가해서 사용하면 됩니다.
 """

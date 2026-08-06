@@ -12,7 +12,7 @@
 사용 예:
     python main.py fetch --source naver --limit 20
     python main.py clean --all
-    python main.py summarize --unsummarized --limit 10
+    python main.py summarize --unsummarized --limit 3
     python main.py analyze --date-from 2026-01-01 --date-to 2026-01-10 --category IT
     python main.py report --format md
     python main.py export --format csv --status summarized
@@ -25,9 +25,9 @@ from src.common.config import load_config
 from src.common.logger import get_logger, setup_logging
 
 from src.collector.cli import register_subparser as register_collector  # A: fetch, clean
+from src.ai.cli import register_subparser as register_ai  # B: summarize, analyze
 
 # TODO: 각 담당자가 자기 모듈의 register_subparser를 여기 import한다.
-# from src.ai.??? import register_subparser as register_ai                # B: summarize, analyze
 # from src.report.??? import register_subparser as register_report        # C: report, export
 # from src.query.??? import register_subparser as register_query          # D(보너스): list, show
 
@@ -39,9 +39,9 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     register_collector(subparsers)
+    register_ai(subparsers)
 
     # TODO: 각 담당자가 자신의 register 함수를 호출한다.
-    # register_ai(subparsers)
     # register_report(subparsers)
     # register_query(subparsers)
 
