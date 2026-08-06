@@ -28,14 +28,22 @@ cp .env.example .env         # AI_API_KEY 채우기
 ## 실행 예시
 
 ```bash
+# 방법 1: 네이버 뉴스 API
 python main.py fetch --source naver --limit 20
 python main.py fetch --source naver --query IT --category IT --limit 3
 python main.py fetch --source naver --query 반도체 --category tech --limit 3
+
+# 방법 2: 전자신문(etnews.com) AI·SW 섹션 크롤링
+# --query는 사용되지 않는다 (섹션 페이지 고정이라 검색 개념이 없음).
+python main.py fetch --source crawl --limit 5
+python main.py fetch --source crawl --category AI --limit 5
+
 python main.py clean --all
-python main.py summarize --unsummarized --limit 10
-python main.py analyze --date-from 2026-01-01 --date-to 2026-01-10 --category IT
-python main.py report --format md
-python main.py export --format csv --status summarized
+# 아직 미 개발
+# python main.py summarize --unsummarized --limit 10
+# python main.py analyze --date-from 2026-01-01 --date-to 2026-01-10 --category IT
+# python main.py report --format md
+# python main.py export --format csv --status summarized
 
 # 보너스
 python main.py list --category IT --page 1
